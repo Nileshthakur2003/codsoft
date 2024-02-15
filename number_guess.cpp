@@ -33,7 +33,7 @@ int main() {
 			}
 			else if (user_guess == currentSecret) {
 				cout << "What a Guess!! you have hit the target in dark!" << endl;
-
+				guessRight = 1;
 			}
 			else if (user_guess < currentSecret) {
 				cout << "Guess Higher!!" << endl;
