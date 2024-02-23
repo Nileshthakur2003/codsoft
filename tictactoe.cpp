@@ -9,6 +9,7 @@ int check_linear_combinations(char t);
 int check_diagonal_combinations(char t);
 int check_linear_vertical_combinations(char t);
 int check_if_filled(int pos);
+int check_if_all_filled();
 
 char matrix[3][3] = { {' ',' ',' '},{' ',' ',' '},{' ',' ',' '} };
 
@@ -125,6 +126,12 @@ int main() {
 		winner='o';
 	}
 	}
+	if(check_if_all_filled()){
+		system("CLS");
+		cout << "All boxes filled!" << endl;
+		cout << "Exiting the program" << endl;
+		break;
+	}
 	}
 	
 
@@ -170,7 +177,7 @@ int check_diagonal_combinations(char t){
 
 	if (matrix[0][0] == t && matrix[1][1] == t && matrix[2][2] == t) {
 		match = 1;
-	}else if (matrix[0][2] == t && matrix[1][1] == t && matrix[2][1] == t) {
+	}else if (matrix[0][2] == t && matrix[1][1] == t && matrix[2][0] == t) {
 		match = 1;
 	}
 
@@ -184,7 +191,7 @@ int check_linear_vertical_combinations(char t){
 
 	for (i = 0; i < 3; i++) {
 
-		if (matrix[0][i] == t && matrix[1][i] == t && matrix[2][i] == t) {
+		if (matrix[i][0] == t && matrix[i][1] == t && matrix[i][2] == t) {
 			match = 1;
 		}
 	}
@@ -250,4 +257,19 @@ int check_if_filled(int pos)
 
 		return result;
 
+}
+int check_if_all_filled(){
+
+	int all_filled = 1;
+	int i,j;
+
+	for(i=0;i<3;i++){
+		for(j=0;j<3;j++){
+			if(!(matrix[i][j]=='x' || matrix[i][j]=='o')){
+				all_filled = 0;
+			}
+		}
+	}
+
+	return all_filled;
 }
